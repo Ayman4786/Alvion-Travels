@@ -1,23 +1,20 @@
+/* Tailwind base styles */
 @import "tailwindcss";
 
-/* ===========================
-   Root Theme Variables
-=========================== */
+/* Theme Colors */
 
 :root {
   --background: #AE957F;
-  --background-light: #8f6943;
-  --surface: #8a6640;
-  --primary: #f4e7d3;
-  --secondary: #e8dccb;
-  --text: #f8f3ed;
-  --text-dark: #5c4033;
+  --background-light: #977140;
+  --surface: #8A6640;
+  --primary: #F4E7D3;
+  --secondary: #E8DCCB;
+  --text: #F8F3ED;
+  --text-dark: #5C4033;
   --accent: #ffffff;
 }
 
-/* ===========================
-   Global Reset
-=========================== */
+/* Global Reset */
 
 * {
   margin: 0;
@@ -25,14 +22,17 @@
   box-sizing: border-box;
 }
 
+/* Selection color */
 *::selection {
   background: rgba(244, 231, 211, 0.25);
 }
 
+/* Smooth in-page scrolling */
 html {
   scroll-behavior: smooth;
 }
 
+/* Base page surface */
 body {
   background: var(--background);
   color: var(--text);
@@ -40,65 +40,53 @@ body {
   overflow-x: hidden;
 }
 
-/* ===========================
-   Images
-=========================== */
+/* Images */
 
 img {
   max-width: 100%;
   display: block;
 }
 
-/* ===========================
-   Links
-=========================== */
+/* Links */
 
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* ===========================
-   Buttons
-=========================== */
+/* Buttons */
 
 button {
   cursor: pointer;
   transition: 0.3s ease;
 }
 
-/* ===========================
-   Section Spacing
-=========================== */
+/* Section Spacing */
 
 section {
   padding: 90px 8%;
 }
 
-/* ===========================
-   Scrollbar
-=========================== */
+/* Scrollbar */
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #8a6640;
+  background: #977140;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f4e7d3;
+  background: #F4E7D3;
   border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e8d6bc;
+  background: #E8D6BC;
 }
 
-/* ===========================
-   Utility Classes
-=========================== */
+/* Utility Classes */
 
 .container-custom {
   max-width: 1400px;

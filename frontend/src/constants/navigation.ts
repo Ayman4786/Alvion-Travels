@@ -1,3 +1,11 @@
+/**
+ * Navigation Items
+ *
+ * Centralized section links reused by the navbar
+ * and footer to keep in-page navigation consistent.
+ */
+
+// Single source of truth for section anchors.
 export const NAV_ITEMS = [
   {
     label: "Home",

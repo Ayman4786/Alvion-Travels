@@ -1,7 +1,15 @@
+/**
+ * Contact Section
+ *
+ * Combines company contact details with a simple inquiry form
+ * so visitors can quickly reach out to Allen Travels.
+ */
+
 import Card from "@/components/ui/Card";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import SectionTitle from "@/components/ui/SectionTitle";
 
+// Contact detail items displayed as cards.
 const contactDetails = [
 	{
 		title: "Phone",
@@ -21,20 +29,26 @@ const contactDetails = [
 	},
 ] as const;
 
+// Contact information and inquiry form.
 export default function Contact() {
 	return (
 		<section id="contact" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
 			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+				{/* Two-column contact layout */}
 				<div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+					{/* Left column: contact info */}
 					<div>
+						{/* Shared section title */}
 						<SectionTitle
 							title="CONTACT US"
 							subtitle="Let's plan your next unforgettable journey."
 						/>
 
+						{/* Contact detail cards */}
 						<div className="mt-10 grid gap-4 sm:grid-cols-2">
+							{/* Render each contact method */}
 							{contactDetails.map((item) => (
-								<Card key={item.title} className="bg-[#8F6943]">
+								<Card key={item.title} className="bg-[#8A6640]">
 									<article className="flex h-full flex-col gap-4">
 										<div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(244,231,211,0.12)] text-sm font-semibold text-white ring-1 ring-[rgba(255,255,255,0.12)]">
 											•
@@ -53,9 +67,12 @@ export default function Contact() {
 						</div>
 					</div>
 
+					{/* Right column: contact form */}
 					<div className="lg:pt-14">
-						<Card className="bg-[#8F6943]">
+						{/* Inquiry form */}
+						<Card className="bg-[#8A6640]">
 							<form className="space-y-5">
+								{/* User details */}
 								<div className="grid gap-5 sm:grid-cols-2">
 									<label className="block">
 										<span className="mb-2 block text-sm font-medium text-[#F8F3ED]">
@@ -81,6 +98,7 @@ export default function Contact() {
 									</label>
 								</div>
 
+								{/* Subject field */}
 								<label className="block">
 									<span className="mb-2 block text-sm font-medium text-[#F8F3ED]">
 										Subject
@@ -93,6 +111,7 @@ export default function Contact() {
 									/>
 								</label>
 
+								{/* Message field */}
 								<label className="block">
 									<span className="mb-2 block text-sm font-medium text-[#F8F3ED]">
 										Message
@@ -105,6 +124,7 @@ export default function Contact() {
 									/>
 								</label>
 
+								{/* Submit action */}
 								<PrimaryButton className="w-full sm:w-auto">Submit</PrimaryButton>
 							</form>
 						</Card>

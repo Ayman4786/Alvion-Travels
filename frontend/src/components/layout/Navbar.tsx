@@ -67,7 +67,7 @@ export default function Navbar() {
 		<header
 			className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
 				isScrolled
-					? "border-b border-[rgba(255,255,255,0.12)] bg-[#8a6640]/95 shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-md"
+					? "border-b border-[rgba(255,255,255,0.12)] bg-[#977140]/95 shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-md"
 					: "bg-transparent"
 			}`}
 		>
@@ -138,7 +138,7 @@ export default function Navbar() {
 
 			<div
 				id="mobile-navigation"
-				className={`overflow-hidden border-t border-[rgba(255,255,255,0.12)] bg-[#8a6640]/95 backdrop-blur-md transition-all duration-300 lg:hidden ${
+				className={`overflow-hidden border-t border-[rgba(255,255,255,0.12)] bg-[#977140]/95 backdrop-blur-md transition-all duration-300 lg:hidden ${
 					isMobileMenuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
 				}`}
 			>

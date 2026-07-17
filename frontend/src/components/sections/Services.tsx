@@ -1,5 +1,13 @@
+/**
+ * Services Section
+ *
+ * Shows the primary service offerings using a split layout
+ * with supporting imagery and reusable cards.
+ */
+
 import Image from "next/image";
 
+// Service offerings rendered into cards.
 const services = [
   {
     title: "Flight Booking",
@@ -33,10 +41,12 @@ const services = [
   },
 ] as const;
 
+// Travel service offerings and supporting visuals.
 export default function Services() {
   return (
     <section id="services" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section heading */}
         <div className="mb-12 max-w-2xl">
           <span className="mb-4 inline-flex rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(244,231,211,0.12)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white backdrop-blur-sm sm:text-sm">
             What We Offer
@@ -51,20 +61,24 @@ export default function Services() {
           </p>
         </div>
 
+        {/* Split layout for imagery and service cards */}
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          {/* Supporting image column */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {/* First service image */}
             <div className="overflow-hidden rounded-4xl shadow-[0_22px_60px_rgba(0,0,0,0.22)] ring-1 ring-[rgba(255,255,255,0.12)]">
               <Image
-                src="/images/hero.jpg"
+                src="/images/service_img1.jpg"
                 alt="Travel service showcase"
                 width={1000}
                 height={1200}
                 className="h-70 w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-80 lg:h-90"
               />
             </div>
+            {/* Second service image */}
             <div className="overflow-hidden rounded-4xl shadow-[0_22px_60px_rgba(0,0,0,0.22)] ring-1 ring-[rgba(255,255,255,0.12)]">
               <Image
-                src="/images/service2.jpg"
+                src="/images/service_img2.jpg"
                 alt="Travel planning support"
                 width={1000}
                 height={1200}
@@ -73,11 +87,13 @@ export default function Services() {
             </div>
           </div>
 
+          {/* Service cards */}
           <div className="grid gap-4 sm:grid-cols-2">
+            {/* Render each service dynamically */}
             {services.map((service) => (
               <article
                 key={service.title}
-                className="group rounded-[1.75rem] border border-[rgba(255,255,255,0.12)] bg-[#8F6943] p-6 shadow-[0_14px_34px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#8A6640] hover:shadow-[0_18px_44px_rgba(0,0,0,0.2)]"
+                className="group rounded-[1.75rem] border border-[rgba(255,255,255,0.12)] bg-[#8A6640] p-6 shadow-[0_14px_34px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#977140] hover:shadow-[0_18px_44px_rgba(0,0,0,0.2)]"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgba(244,231,211,0.12)] text-white ring-1 ring-[rgba(255,255,255,0.12)] transition-transform duration-300 group-hover:scale-105">
                   <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">

@@ -1,5 +1,13 @@
+/**
+ * Footer Section
+ *
+ * Provides brand context, quick links, contact details,
+ * and social follow links at the bottom of the page.
+ */
+
 import { NAV_ITEMS } from "@/constants/navigation";
 
+// Social destinations shown in the footer.
 const socialLinks = [
 	{ label: "Instagram", href: "#" },
 	{ label: "Facebook", href: "#" },
@@ -7,6 +15,7 @@ const socialLinks = [
 	{ label: "LinkedIn", href: "#" },
 ] as const;
 
+// Company contact details displayed in the footer.
 const contactItems = [
 	{ label: "Phone", value: "+91 9964855315" },
 	{ label: "Email", value: "info@allentravels.com" },
@@ -16,11 +25,14 @@ const contactItems = [
 	},
 ] as const;
 
+// Site footer content and utility links.
 export default function Footer() {
 	return (
-		<footer className="bg-[#8a6640] text-white">
+		<footer className="bg-[#AE957F] text-white">
+			{/* Footer grid */}
 			<div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 				<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+					{/* Brand column */}
 					<section aria-label="Company information" className="space-y-5">
 						<div className="flex items-center gap-3">
 							<span className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(244,231,211,0.12)] text-sm font-semibold text-white ring-1 ring-[rgba(255,255,255,0.12)] shadow-sm">
@@ -38,6 +50,7 @@ export default function Footer() {
 						</p>
 					</section>
 
+					{/* Quick navigation links */}
 					<nav aria-label="Quick links" className="space-y-5">
 						<h3 className="text-lg font-semibold">Quick Links</h3>
 						<ul className="space-y-3">
@@ -55,6 +68,7 @@ export default function Footer() {
 						</ul>
 					</nav>
 
+					{/* Contact column */}
 					<section aria-label="Contact information" className="space-y-5">
 						<h3 className="text-lg font-semibold">Contact Information</h3>
 						<ul className="space-y-4 text-sm leading-7 text-[#E8DCCB]">
@@ -67,6 +81,7 @@ export default function Footer() {
 						</ul>
 					</section>
 
+					{/* Social links */}
 					<section aria-label="Follow us" className="space-y-5">
 						<h3 className="text-lg font-semibold">Follow Us</h3>
 						<ul className="grid gap-3">
@@ -84,6 +99,7 @@ export default function Footer() {
 					</section>
 				</div>
 
+				{/* Copyright bar */}
 				<div className="mt-14 border-t border-[rgba(255,255,255,0.12)] pt-6">
 					<div className="flex flex-col gap-3 text-sm text-[#E8DCCB] sm:flex-row sm:items-center sm:justify-between">
 						<p>© 2026 Allen Travels.</p>

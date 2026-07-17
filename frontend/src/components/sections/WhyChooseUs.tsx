@@ -1,7 +1,15 @@
+/**
+ * Why Choose Us Section
+ *
+ * Highlights the trust-building reasons that differentiate
+ * Allen Travels through a feature grid and supporting image.
+ */
+
 import Image from "next/image";
 import Card from "@/components/ui/Card";
 import SectionTitle from "@/components/ui/SectionTitle";
 
+// Trust-focused feature list.
 const features = [
 	{
 		title: "Competitive Pricing",
@@ -35,20 +43,26 @@ const features = [
 	},
 ] as const;
 
+// Persuasive feature and image section.
 export default function WhyChooseUs() {
 	return (
 		<section id="why-choose-us" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
 			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+				{/* Two-column layout */}
 				<div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+					{/* Left content: title and feature cards */}
 					<div className="opacity-95">
+						{/* Shared section title */}
 						<SectionTitle
 							title="WHY CHOOSE US?"
 							subtitle="Discover why thousands of travelers trust Allen Travels for unforgettable journeys."
 						/>
 
+						{/* Feature cards */}
 						<div className="mt-10 grid gap-4 sm:grid-cols-2">
+							{/* Render trust highlights */}
 							{features.map((feature) => (
-								<Card key={feature.title} className="bg-[#8F6943]">
+								<Card key={feature.title} className="bg-[#8A6640]">
 									<article className="flex h-full flex-col">
 										<div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(244,231,211,0.12)] text-white ring-1 ring-[rgba(255,255,255,0.12)]">
 											<svg
@@ -80,7 +94,9 @@ export default function WhyChooseUs() {
 						</div>
 					</div>
 
+					{/* Right content: supporting image */}
 					<aside className="relative lg:pt-14">
+						{/* Main section image */}
 						<div className="overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-[rgba(255,255,255,0.12)]">
 							<Image
 								src="/images/why-choose-us.jpg"
