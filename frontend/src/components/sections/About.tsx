@@ -25,7 +25,7 @@ const features = [
 
 export default function About() {
 	return (
-		<section id="about" className="bg-[#977140] py-20 text-white sm:py-24 lg:py-28">
+		<section id="about" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
 			<div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
 				<div className="relative">
 					<div className="overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-[rgba(255,255,255,0.12)]">

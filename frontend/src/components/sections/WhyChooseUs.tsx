@@ -37,7 +37,7 @@ const features = [
 
 export default function WhyChooseUs() {
 	return (
-		<section id="why-choose-us" className="bg-[#977140] py-20 text-white sm:py-24 lg:py-28">
+		<section id="why-choose-us" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
 			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
 					<div className="opacity-95">

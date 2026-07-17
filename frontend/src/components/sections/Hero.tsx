@@ -4,7 +4,7 @@ export default function Hero() {
 	return (
 		<section
 			id="home"
-			className="relative overflow-hidden bg-[#977140] text-white"
+			className="relative overflow-hidden bg-[#AE957F] text-white"
 		>
 			<div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,231,211,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(244,231,211,0.08),transparent_30%)]" />
 
