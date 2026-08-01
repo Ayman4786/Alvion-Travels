@@ -46,7 +46,7 @@ const features = [
 // Persuasive feature and image section.
 export default function WhyChooseUs() {
 	return (
-		<section id="why-choose-us" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
+		<section id="why-choose-us" className="bg-[var(--background)] py-20 text-[var(--heading)] sm:py-24 lg:py-28">
 			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Two-column layout */}
 				<div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
@@ -59,45 +59,52 @@ export default function WhyChooseUs() {
 						/>
 
 						{/* Feature cards */}
-						<div className="mt-10 grid gap-4 sm:grid-cols-2">
+						<div className="mt-10 grid gap-5 sm:grid-cols-2">
 							{/* Render trust highlights */}
 							{features.map((feature) => (
-								<Card key={feature.title} className="bg-[#8A6640]">
-									<article className="flex h-full flex-col">
-										<div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(244,231,211,0.12)] text-white ring-1 ring-[rgba(255,255,255,0.12)]">
-											<svg
-												viewBox="0 0 24 24"
-												fill="none"
-												className="h-5 w-5"
-												aria-hidden="true"
-											>
-												<path
-													d="M20 6L9 17l-5-5"
-													stroke="currentColor"
-													strokeWidth="2"
-													strokeLinecap="round"
-													strokeLinejoin="round"
-												/>
-											</svg>
-										</div>
-										<div className="mt-5">
-											<h3 className="text-lg font-semibold text-white">
-												{feature.title}
-											</h3>
-											<p className="mt-2 text-sm leading-6 text-[#E8DCCB]">
-												{feature.description}
-											</p>
-										</div>
-									</article>
-								</Card>
-							))}
+								<article
+									key={feature.title}
+									className="group rounded-3xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-5 shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--card-hover)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.18)]"
+								>
+									<div className="flex items-start gap-4">
+									{/* Icon */}
+									<div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--glass)] text-[var(--card-icon)] ring-1 ring-[var(--border)] transition-transform duration-300 group-hover:scale-105">
+										<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										className="h-5 w-5"
+										aria-hidden="true"
+										>
+										<path
+											d="M20 6L9 17L4 12"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+										</svg>
+									</div>
+
+									{/* Content */}
+									<div className="flex-1">
+										<h3 className="text-lg font-semibold text-[var(--primary)] sm:text-lg">
+										{feature.title}
+										</h3>
+
+										<p className="mt-2 text-sm leading-7 text-[var(--text-muted)] sm:text-base">
+										{feature.description}
+										</p>
+									</div>
+									</div>
+								</article>
+								))}
 						</div>
 					</div>
 
 					{/* Right content: supporting image */}
 					<aside className="relative lg:pt-14">
 						{/* Main section image */}
-						<div className="overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-[rgba(255,255,255,0.12)]">
+						<div className="overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-[var(--border)]">
 							<Image
 								src="/images/why-choose-us.jpg"
 								alt="Travel planning and adventure inspiration"

@@ -4,16 +4,57 @@
 /* Theme Colors */
 
 :root {
-  --background: #AE957F;
-  --background-light: #977140;
-  --surface: #8A6640;
-  --primary: #F4E7D3;
-  --secondary: #E8DCCB;
-  --text: #F8F3ED;
-  --text-dark: #5C4033;
-  --accent: #ffffff;
-}
+  /* =========================
+     Page Backgrounds
+  ========================= */
+  --background: #FFFFFF;
+  --background-light: #F8F9FA;
+  --surface: #1F2937;
 
+  /* =========================
+     Brand Colors
+  ========================= */
+  --primary: #0077BE;
+  --primary-hover: #005F99;
+  --accent: #977140;
+
+  /* =========================
+     Main Text
+  ========================= */
+  --heading: #111827;
+  --text: #374151;
+  --text-muted: #6B7280;
+  --text-light: #FFFFFF;
+
+  /* =========================
+     Card Colors
+  ========================= */
+  --card-bg: #1F2937;
+  --card-hover: #374151;
+
+  --card-heading: #FFFFFF;
+  --card-text: #D1D5DB;
+  --card-icon: #FFFFFF;
+
+  /* =========================
+     Buttons
+  ========================= */
+  --button-bg: #1F2937;
+  --button-hover: #111827;
+  --button-text: #FFFFFF;
+
+  /* =========================
+     Borders & Shadows
+  ========================= */
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: rgba(0, 0, 0, 0.15);
+
+  /* =========================
+     Glass / Overlay
+  ========================= */
+  --glass: rgba(17, 24, 39, 0.06);
+  --icon-bg: rgba(255, 255, 255, 0.08);
+}
 /* Global Reset */
 
 * {
@@ -24,7 +65,8 @@
 
 /* Selection color */
 *::selection {
-  background: rgba(244, 231, 211, 0.25);
+  background: var(--primary);
+  color: var(--text-light);
 }
 
 /* Smooth in-page scrolling */
@@ -69,21 +111,30 @@ section {
 
 /* Scrollbar */
 
+
+/* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #977140;
+  background: #3D4639;   /* Green background */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #F4E7D3;
-  border-radius: 20px;
+  background: #FFFFFF;   /* White scrollbar */
+  border-radius: 999px;
+  border: 2px solid #3D4639;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E8D6BC;
+  background: #F3F4F6;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #FFFFFF #1F2937;
 }
 
 /* Utility Classes */

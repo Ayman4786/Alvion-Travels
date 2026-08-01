@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { NAV_ITEMS } from "@/constants/navigation";
 
-const SCROLL_THRESHOLD = 50;
+
 
 export default function Navbar() {
-	const [isScrolled, setIsScrolled] = useState(false);
+	
 	const [activeSection, setActiveSection] = useState("home");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,8 +14,6 @@ export default function Navbar() {
 		const sectionIds = NAV_ITEMS.map((item) => item.href.slice(1));
 
 		const updateState = () => {
-			const scrollY = window.scrollY;
-			setIsScrolled(scrollY > SCROLL_THRESHOLD);
 
 			const sectionOffset = window.innerHeight * 0.35;
 			let currentSection = sectionIds[0];
@@ -65,11 +63,7 @@ export default function Navbar() {
 
 	return (
 		<header
-			className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-				isScrolled
-					? "border-b border-[rgba(255,255,255,0.12)] bg-[#977140]/95 shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-md"
-					: "bg-transparent"
-			}`}
+			className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--card-bg)] shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition-all duration-300"
 		>
 			<nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 				<button
@@ -78,14 +72,14 @@ export default function Navbar() {
 					className="group flex items-center gap-3 text-left"
 					aria-label="Go to home section"
 				>
-					<span className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(244,231,211,0.12)] text-sm font-semibold text-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+					<span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--icon-bg)] text-sm font-semibold text-[var(--text-light)] shadow-sm transition-transform duration-300 group-hover:scale-105">
 						AT
 					</span>
-					<span className="flex flex-col leading-tight text-white">
+					<span className="flex flex-col leading-tight text-[var(--text-light)]">
 						<span className="text-base font-semibold tracking-wide sm:text-lg">
 							Allen Travels
 						</span>
-						<span className="text-[11px] text-[#E8DCCB] sm:text-xs">
+						<span className="text-[11px] text-[var(--text-muted)] sm:text-xs">
 							Your Journey, Our Priority
 						</span>
 					</span>
@@ -101,8 +95,8 @@ export default function Navbar() {
 								type="button"
 								onClick={() => handleNavigate(item.href)}
 								className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-									isActive ? "text-white" : "text-[#E8DCCB] hover:text-white"
-								} after:absolute after:inset-x-4 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-[#F4E7D3] after:transition-transform after:duration-300 hover:after:scale-x-100 ${
+									isActive ? "text-[var(--text-light)]" : "text-[var(--text-muted)] hover:text-[var(--text-light)]"
+								} after:absolute after:inset-x-4 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-[var(--primary)] after:transition-transform after:duration-300 hover:after:scale-x-100 ${
 									isActive ? "after:scale-x-100" : ""
 								}`}
 								aria-current={isActive ? "page" : undefined}
@@ -116,7 +110,7 @@ export default function Navbar() {
 				<button
 					type="button"
 					onClick={() => setIsMobileMenuOpen((current) => !current)}
-					className="inline-flex items-center justify-center rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(244,231,211,0.12)] p-3 text-white transition-colors duration-300 hover:bg-[rgba(244,231,211,0.18)] lg:hidden"
+					className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-[var(--icon-bg)] p-3 text-[var(--text-light)] transition-colors duration-300 hover:bg-[rgba(244,231,211,0.18)] lg:hidden"
 					aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
 					aria-expanded={isMobileMenuOpen}
 					aria-controls="mobile-navigation"
@@ -138,7 +132,7 @@ export default function Navbar() {
 
 			<div
 				id="mobile-navigation"
-				className={`overflow-hidden border-t border-[rgba(255,255,255,0.12)] bg-[#977140]/95 backdrop-blur-md transition-all duration-300 lg:hidden ${
+				className={`overflow-hidden border-t border-[var(--border)] bg-[var(--primary)]/95 backdrop-blur-md transition-all duration-300 lg:hidden ${
 					isMobileMenuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
 				}`}
 			>
@@ -152,12 +146,12 @@ export default function Navbar() {
 								type="button"
 								onClick={() => handleNavigate(item.href)}
 								className={`flex items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition-colors duration-300 ${
-									isActive ? "bg-[rgba(244,231,211,0.12)] text-white" : "text-[#E8DCCB] hover:bg-[rgba(244,231,211,0.08)] hover:text-white"
+									isActive ? "bg-[var(--icon-bg)] text-[var(--text-light)]" : "text-[var(--text-muted)] hover:bg-[rgba(244,231,211,0.08)] hover:text-[var(--text-light)]"
 								}`}
 								aria-current={isActive ? "page" : undefined}
 							>
 								<span>{item.label}</span>
-								<span className="h-px w-8 bg-[#F4E7D3]/50" aria-hidden="true" />
+								<span className="h-px w-8 bg-[var(--primary)]/50" aria-hidden="true" />
 							</button>
 						);
 					})}

@@ -34,12 +34,12 @@ const features = [
 // Company introduction and feature summary.
 export default function About() {
 	return (
-		<section id="about" className="bg-[#AE957F] py-20 text-white sm:py-24 lg:py-28">
+		<section id="about" className="bg-[var(--background)] py-20 text-[var(--text)] sm:py-24 lg:py-28">
 			<div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
 				{/* Visual column */}
 				<div className="relative">
 					{/* About image */}
-					<div className="overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-[rgba(255,255,255,0.12)]">
+					<div className="overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-[var(--border)]">
 						<Image
 							src="/images/about.jpg"
 							alt="Travel experience"
@@ -53,16 +53,16 @@ export default function About() {
 				{/* Content column */}
 				<div className="flex flex-col">
 					{/* Section label */}
-					<span className="mb-4 inline-flex w-fit rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(244,231,211,0.12)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white backdrop-blur-sm sm:text-sm">
+					<span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--icon-bg)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--primary)] shadow-sm backdrop-blur-sm sm:text-sm">
 						Who Are We?
 					</span>
 
-					<h2 className="max-w-xl text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+					<h2 className="max-w-xl text-3xl font-semibold leading-tight tracking-tight text-[var(--heading)] sm:text-4xl lg:text-5xl">
 						Your Trusted Travel Partner
 					</h2>
 
 					{/* Company description */}
-					<p className="mt-6 max-w-2xl text-base leading-8 text-[#F8F3ED] sm:text-lg">
+					<p className="mt-6 max-w-2xl text-base leading-8 text-[var(--text)] sm:text-lg">
 						We are a passionate travel company dedicated to creating unforgettable
 						travel experiences. Whether it&apos;s family vacations, honeymoon packages,
 						corporate travel, or international adventures, we focus on comfort,
@@ -75,17 +75,17 @@ export default function About() {
 						{features.map((feature) => (
 							<article
 								key={feature.title}
-								className="group rounded-3xl border border-[rgba(255,255,255,0.12)] bg-[#8A6640] p-5 shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#977140] hover:shadow-[0_18px_40px_rgba(0,0,0,0.18)]"
+								className="group rounded-3xl border border-[var(--border)] bg-[var(--card-bg)] pt-8 px-6 pb-6 shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--card-bg)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.18)]"
 							>
 								<div className="flex items-start gap-4">
-									<span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[rgba(244,231,211,0.12)] text-sm font-semibold text-white ring-1 ring-[rgba(255,255,255,0.12)] transition-transform duration-300 group-hover:scale-105">
+									<span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--glass)] text-sm font-semibold text-[var(--text-light)] ring-1 ring-[var(--border)] transition-transform duration-300 group-hover:scale-105">
 										✓
 									</span>
 									<div>
-										<h3 className="text-lg font-semibold text-white">
+										<h3 className="text-lg font-semibold text-[var(--primary)]">
 											{feature.title}
 										</h3>
-										<p className="mt-2 text-sm leading-6 text-[#E8DCCB]">
+										<p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
 											{feature.description}
 										</p>
 									</div>
