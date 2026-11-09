@@ -1,5 +1,6 @@
 export const siteImages = {
   hero: "/images/hero-maldives.png",
+  heroFallback: "/images/hero-maldives.png",
   about: "/images/about.jpg",
   services: {
     international: "/images/services_image/img1.jpg",
