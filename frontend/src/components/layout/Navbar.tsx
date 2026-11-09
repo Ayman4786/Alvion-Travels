@@ -62,30 +62,26 @@ export default function Navbar() {
 	};
 
 	return (
-		<header
-			className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--card-bg)] shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition-all duration-300"
-		>
-			<nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+			<header className="fixed inset-x-0 top-0 z-50">
+				<nav className="mx-auto flex w-full max-w-[1440px] items-center justify-between bg-[#0B2938] px-5 py-5 text-white sm:px-8 lg:px-12">
 				<button
 					type="button"
 					onClick={() => handleNavigate("#home")}
 					className="group flex items-center gap-3 text-left"
 					aria-label="Go to home section"
 				>
-					<span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--icon-bg)] text-sm font-semibold text-[var(--text-light)] shadow-sm transition-transform duration-300 group-hover:scale-105">
-						AT
-					</span>
+					
 					<span className="flex flex-col leading-tight text-[var(--text-light)]">
-						<span className="text-base font-semibold tracking-wide sm:text-lg">
-							Allen Travels
+						<span className="font-display text-base font-semibold tracking-wide text-white sm:text-lg">
+							Alvion Travels
 						</span>
-						<span className="text-[11px] text-[var(--text-muted)] sm:text-xs">
-							Your Journey, Our Priority
+						<span className="text-[10px] uppercase tracking-[0.22em] text-white/65 sm:text-[11px]">
+							Explore Beyond
 						</span>
 					</span>
 				</button>
 
-				<div className="hidden items-center gap-2 lg:flex">
+				<div className="hidden items-center gap-1 lg:flex">
 					{NAV_ITEMS.map((item) => {
 						const isActive = activeSection === item.href.slice(1);
 
@@ -95,7 +91,7 @@ export default function Navbar() {
 								type="button"
 								onClick={() => handleNavigate(item.href)}
 								className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-									isActive ? "text-[var(--text-light)]" : "text-[var(--text-muted)] hover:text-[var(--text-light)]"
+									isActive ? "text-white" : "text-white/70 hover:text-white"
 								} after:absolute after:inset-x-4 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-[var(--primary)] after:transition-transform after:duration-300 hover:after:scale-x-100 ${
 									isActive ? "after:scale-x-100" : ""
 								}`}
@@ -110,7 +106,7 @@ export default function Navbar() {
 				<button
 					type="button"
 					onClick={() => setIsMobileMenuOpen((current) => !current)}
-					className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-[var(--icon-bg)] p-3 text-[var(--text-light)] transition-colors duration-300 hover:bg-[rgba(244,231,211,0.18)] lg:hidden"
+					className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 p-3 text-white backdrop-blur-md transition-colors duration-300 hover:bg-white/20 lg:hidden"
 					aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
 					aria-expanded={isMobileMenuOpen}
 					aria-controls="mobile-navigation"
@@ -132,7 +128,7 @@ export default function Navbar() {
 
 			<div
 				id="mobile-navigation"
-				className={`overflow-hidden border-t border-[var(--border)] bg-[var(--primary)]/95 backdrop-blur-md transition-all duration-300 lg:hidden ${
+				className={`overflow-hidden border-t border-white/15 bg-[#082c3c]/95 backdrop-blur-md transition-all duration-300 lg:hidden ${
 					isMobileMenuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
 				}`}
 			>
@@ -146,7 +142,7 @@ export default function Navbar() {
 								type="button"
 								onClick={() => handleNavigate(item.href)}
 								className={`flex items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition-colors duration-300 ${
-									isActive ? "bg-[var(--icon-bg)] text-[var(--text-light)]" : "text-[var(--text-muted)] hover:bg-[rgba(244,231,211,0.08)] hover:text-[var(--text-light)]"
+									isActive ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/10 hover:text-white"
 								}`}
 								aria-current={isActive ? "page" : undefined}
 							>

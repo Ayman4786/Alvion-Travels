@@ -10,8 +10,9 @@ import "./globals.css";
 
 // Shared metadata for the browser and search engines.
 export const metadata: Metadata = {
-  title: "Travel Agency",
-  description: "Production-ready frontend foundation for a travel agency website.",
+  title: "Alvion Travels | Explore Beyond, beautifully planned",
+  description:
+    "Alvion Travels creates considered, memorable journeys for curious travellers around the world.",
 };
 
 // Root HTML wrapper for all rendered content.

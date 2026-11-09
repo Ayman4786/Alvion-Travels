@@ -20,6 +20,14 @@ export const NAV_ITEMS = [
     href: "#services",
   },
   {
+    label: "Destinations",
+    href: "#destinations",
+  },
+  {
+    label: "Why Alvion",
+    href: "#why-choose-us",
+  },
+  {
     label: "Contact",
     href: "#contact",
   },

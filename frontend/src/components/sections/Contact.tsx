@@ -1,136 +1,84 @@
-/**
- * Contact Section
- *
- * Combines company contact details with a simple inquiry form
- * so visitors can quickly reach out to Allen Travels.
- */
+"use client";
 
-import Card from "@/components/ui/Card";
-import PrimaryButton from "@/components/ui/PrimaryButton";
-import SectionTitle from "@/components/ui/SectionTitle";
+import { FormEvent, useState } from "react";
 
-// Contact detail items displayed as cards.
-const contactDetails = [
-	{
-		title: "Phone",
-		value: "+91 9964855315",
-	},
-	{
-		title: "Email",
-		value: "info@allentravels.com",
-	},
-	{
-		title: "Website",
-		value: "www.allentravels.com",
-	},
-	{
-		title: "Address",
-		value: "4/5-1, Lalbagh Siddapura, Jayanagar 1st Block, Bengaluru",
-	},
-] as const;
+type FormState = { name: string; email: string; subject: string; message: string; website: string; };
+const initialForm: FormState = { name: "", email: "", subject: "", message: "", website: "", };
 
-// Contact information and inquiry form.
 export default function Contact() {
-	return (
-		<section id="contact" className="bg-[var(--background)] py-20 text-[var(--text)] sm:py-24 lg:py-28">
-			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-				{/* Two-column contact layout */}
-				<div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
-					{/* Left column: contact info */}
-					<div>
-						{/* Shared section title */}
-						<SectionTitle
-							title="CONTACT US"
-							subtitle="Let's plan your next unforgettable journey."
-						/>
+  const [form, setForm] = useState(initialForm);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-						{/* Contact detail cards */}
-						<div className="mt-10 grid gap-4 sm:grid-cols-2">
-							{/* Render each contact method */}
-							{contactDetails.map((item) => (
-								<Card key={item.title} className="group rounded-xl border border-[var(--border)] bg-[var(--card-bg)] pt-8 px-6 pb-6 shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--card-hover)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-									<article className="flex h-full flex-col gap-4">
-										<div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--icon-bg)] text-sm font-semibold text-[var(--text-light)] ring-1 ring-[var(--border)]">
-											•
-										</div>
-										<div>
-											<h3 className="text-lg font-semibold text-[var(--text-light)]">
-												{item.title}
-											</h3>
-											<p className="mt-2 text-sm leading-7 text-[var(--text-muted)]">
-												{item.value}
-											</p>
-										</div>
-									</article>
-								</Card>
-							))}
-						</div>
-					</div>
+  const updateField = (field: keyof FormState, value: string) => {
+    setForm((current) => ({ ...current, [field]: value }));
+    if (status !== "idle") setStatus("idle");
+  };
 
-					{/* Right column: contact form */}
-					<div className="lg:pt-14">
-						{/* Inquiry form */}
-						<Card className="group rounded-xl border border-[var(--border)] bg-[var(--card-bg)] pt-8 px-6 pb-6 shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--card-bg)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-							<form className="space-y-5">
-								{/* User details */}
-								<div className="grid gap-5 sm:grid-cols-2">
-									<label className="block">
-										<span className="mb-2 block text-sm font-medium text-[var(--text-light)]">
-											Name
-										</span>
-										<input
-											type="text"
-											name="name"
-											className="w-full rounded-2xl border border-[var(--border)] bg-[var(--glass)] px-4 py-3 text-[var(--text-light)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-[var(--primary)] focus:bg-[var(--card-hover)]"
-											placeholder="Your name"
-										/>
-									</label>
-									<label className="block">
-										<span className="mb-2 block text-sm font-medium text-[var(--text-light)]">
-											Email
-										</span>
-										<input
-											type="email"
-											name="email"
-											className="w-full rounded-2xl border border-[var(--border)] bg-[var(--glass)] px-4 py-3 text-[var(--text-light)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-[var(--primary)] focus:bg-[var(--card-hover)]"
-											placeholder="Your email"
-										/>
-									</label>
-								</div>
+  const submitEnquiry = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === "submitting") return;
+    setStatus("submitting");
+    setErrorMessage("");
 
-								{/* Subject field */}
-								<label className="block">
-									<span className="mb-2 block text-sm font-medium text-[var(--text-light)]">
-										Subject
-									</span>
-									<input
-										type="text"
-										name="subject"
-										className="w-full rounded-2xl border border-[var(--border)] bg-[var(--glass)] px-4 py-3 text-[var(--text-light)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-[var(--primary)] focus:bg-[var(--icon-bg)]"
-										placeholder="How can we help?"
-									/>
-								</label>
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+      const response = await fetch(`${baseUrl.replace(/\/$/, "")}/enquiries/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-								{/* Message field */}
-								<label className="block">
-									<span className="mb-2 block text-sm font-medium text-[var(--text-light)]">
-										Message
-									</span>
-									<textarea
-										name="message"
-										rows={6}
-										className="w-full rounded-2xl border border-[var(--border)] bg-[var(--glass)] px-4 py-3 text-[var(--text-light)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-[var(--primary)] focus:bg-[var(--icon-bg)]"
-										placeholder="Tell us about your travel plans"
-									/>
-								</label>
+      if (!response.ok) throw new Error("We could not send your enquiry right now.");
+      setForm(initialForm);
+      setStatus("success");
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    }
+  };
 
-								{/* Submit action */}
-								<PrimaryButton className="w-full sm:w-auto">Submit</PrimaryButton>
-							</form>
-						</Card>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+  return (
+    <section id="contact" className="section-shell bg-white">
+      <div className="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+        <div>
+          <p className="eyebrow text-[var(--aqua)]">Start a conversation</p>
+          <h2 className="font-display mt-5 text-4xl leading-[1.05] text-[var(--navy)] sm:text-6xl">Tell us where<br /><em className="font-editorial text-[var(--aqua)]">you want to go.</em></h2>
+          <p className="mt-7 max-w-md text-base leading-8 text-[var(--ink-soft)]">Have a destination in mind or just a feeling? Share a few details and our travel designers will be in touch.</p>
+          <div className="mt-10 space-y-5 border-t border-[var(--line)] pt-7 text-sm">
+            <a href="tel:+919964855315" className="block text-[var(--navy)] transition-colors hover:text-[var(--aqua)]"><span className="mb-1 block text-[10px] uppercase tracking-[0.18em] text-[var(--ink-soft)]">Call us</span>+91 9964855315</a>
+            <a href="mailto:info@alviontravels.in" className="block text-[var(--navy)] transition-colors hover:text-[var(--aqua)]"><span className="mb-1 block text-[10px] uppercase tracking-[0.18em] text-[var(--ink-soft)]">Email us</span>info@alviontravels.in</a>
+          </div>
+        </div>
+
+        <form onSubmit={submitEnquiry} className="border-t-2 border-[var(--navy)] pt-7">
+          <div
+            aria-hidden="true"
+            className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+          >
+            <label htmlFor="website">Leave this field empty</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={(event) => updateField("website", event.target.value)}
+            />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <label className="field-label">Full name<input required value={form.name} onChange={(event) => updateField("name", event.target.value)} name="name" autoComplete="name" placeholder="Your name" className="field-input" /></label>
+            <label className="field-label">Email address<input required type="email" value={form.email} onChange={(event) => updateField("email", event.target.value)} name="email" autoComplete="email" placeholder="you@example.com" className="field-input" /></label>
+          </div>
+          <label className="field-label mt-6">Subject<input required value={form.subject} onChange={(event) => updateField("subject", event.target.value)} name="subject" placeholder="What are you dreaming about?" className="field-input" /></label>
+          <label className="field-label mt-6">Message<textarea required value={form.message} onChange={(event) => updateField("message", event.target.value)} name="message" rows={5} placeholder="Tell us a little about your plans..." className="field-input resize-y" /></label>
+          <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <button type="submit" disabled={status === "submitting"} className="button-primary w-fit disabled:cursor-not-allowed disabled:opacity-60">{status === "submitting" ? "Sending..." : "Send enquiry"} <span aria-hidden="true">↗</span></button>
+            <p role="status" className={`text-sm ${status === "error" ? "text-red-700" : "text-[var(--aqua)]"}`}>{status === "success" ? "Thanks — we will be in touch shortly." : status === "error" ? errorMessage : ""}</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
 }
