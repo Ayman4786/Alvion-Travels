@@ -21,6 +21,9 @@ class Enquiry(Base):
         String(255),
         nullable=False
     )
+    phone: Mapped[str] = mapped_column(
+        String(20), nullable=False
+    )
 
     subject: Mapped[str] = mapped_column(
         String(255),

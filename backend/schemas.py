@@ -8,33 +8,18 @@ class EnquiryCreate(BaseModel):
         extra="forbid"
     )
 
-    name: str = Field(
-        min_length=2,
-        max_length=150
-    )
-
+    name: str = Field(min_length=2, max_length=150)
     email: EmailStr
-
-    subject: str = Field(
-        min_length=3,
-        max_length=255
-    )
-
-    message: str = Field(
-        min_length=10,
-        max_length=5000
-    )
-
-    website: str = Field(
-    default="",
-    max_length=255
-    )
+    phone: str = Field(min_length=7, max_length=20)
+    subject: str = Field(min_length=3, max_length=255)
+    message: str = Field(min_length=10, max_length=5000)
 
 
 class EnquiryResponse(BaseModel):
     id: int
     name: str
     email: str
+    phone: str
     subject: str
     message: str
     status: str

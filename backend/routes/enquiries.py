@@ -33,15 +33,10 @@ def create_enquiry(
     db: Session = Depends(get_db)
     ):
 
-    if enquiry.website:
-        raise HTTPException(
-        status_code=400,
-        detail="Invalid submission"
-    )
-
     new_enquiry = Enquiry(
         name=enquiry.name,
         email=enquiry.email,
+        phone=enquiry.phone,
         subject=enquiry.subject,
         message=enquiry.message
     )
