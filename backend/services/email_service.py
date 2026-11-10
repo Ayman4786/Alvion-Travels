@@ -29,6 +29,7 @@ def send_enquiry_notification(enquiry):
 
     name = html.escape(enquiry.name)
     email = html.escape(enquiry.email)
+    phone = html.escape(enquiry.phone)
     subject = html.escape(enquiry.subject)
     message = html.escape(enquiry.message).replace("\n", "<br>")
 
@@ -41,6 +42,7 @@ def send_enquiry_notification(enquiry):
             <h2>New Enquiry Received</h2>
             <p><strong>Name:</strong> {name}</p>
             <p><strong>Email:</strong> {email}</p>
+            <p><strong>Contact Number:</strong> {phone}</p>
             <p><strong>Subject:</strong> {subject}</p>
             <h3>Message:</h3>
             <p>{message}</p>
