@@ -16,6 +16,10 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 def send_enquiry_notification(enquiry):
 
     recipient = os.getenv("RESEND_TEST_EMAIL")
+    sender = os.getenv(
+        "RESEND_FROM_EMAIL",
+        "Alvion Travels <onboarding@resend.dev>"
+    )
 
     if not resend.api_key:
         raise ValueError("RESEND_API_KEY is missing")
@@ -29,10 +33,10 @@ def send_enquiry_notification(enquiry):
     message = html.escape(enquiry.message).replace("\n", "<br>")
 
     params = {
-        "from": "Alvion Travels <onboarding@resend.dev>",
+        "from": sender,
         "to": [recipient],
         "reply_to": enquiry.email,
-        "subject": f"New Travel Enquiry: {enquiry.subject}",
+        "subject": f"New Travel Enquiry: {subject}",
         "html": f"""
             <h2>New Enquiry Received</h2>
             <p><strong>Name:</strong> {name}</p>

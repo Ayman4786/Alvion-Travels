@@ -1,11 +1,13 @@
 
 # Alvion Travels
 
-A modern travel agency website designed to showcase travel experiences and make customer enquiries simple. Built with Next.js and FastAPI, backed by PostgreSQL.
+A modern travel agency website designed to showcase travel experiences and make customer enquiries simple. Built with Next.js and FastAPI, with email notifications powered by Resend.
 
 ## Overview
 
-Alvion Travels is a full-stack travel website featuring a responsive frontend, an enquiry management API, PostgreSQL database integration, and email notifications.
+Alvion Travels is a full-stack travel website featuring a responsive frontend, a FastAPI enquiry API, form validation, spam protection, and email notifications.
+
+The lightweight version does not require a PostgreSQL database. Customer enquiries are submitted through the backend and forwarded directly to the configured email address using Resend.
 
 ## Features
 
@@ -18,13 +20,11 @@ Alvion Travels is a full-stack travel website featuring a responsive frontend, a
 
 ### Backend
 - FastAPI REST API
-- PostgreSQL database integration
-- SQLAlchemy ORM
-- Alembic database migrations
 - Pydantic request validation
 - API rate limiting
 - Honeypot-based spam protection
 - Email notifications using Resend
+- No database dependency in the enquiry submission flow
 
 ## Technology Stack
 
@@ -33,9 +33,6 @@ Alvion Travels is a full-stack travel website featuring a responsive frontend, a
 | Frontend | Next.js 15, React, TypeScript |
 | Styling | Tailwind CSS |
 | Backend | Python, FastAPI |
-| Database | PostgreSQL |
-| ORM | SQLAlchemy |
-| Migrations | Alembic |
 | Validation | Pydantic |
 | Email | Resend |
 | Rate Limiting | SlowAPI |
@@ -52,16 +49,14 @@ Travel_web/
 │   └── ...
 │
 ├── backend/
-│   ├── DB/
-│   ├── migrations/
-│   │   └── versions/
+│   ├── DB/                  # Legacy database files, unused in this version
+│   ├── migrations/          # Legacy Alembic files, unused in this version
 │   ├── routes/
 │   ├── services/
 │   ├── main.py
 │   ├── schemas.py
 │   ├── rate_limiter.py
 │   ├── requirements.txt
-│   ├── alembic.ini
 │   └── .env.example
 │
 ├── .gitignore
@@ -74,8 +69,8 @@ Install the following before running the project:
 
 - Node.js and npm
 - Python 3.10 or later
-- PostgreSQL
 - Git
+- A Resend account and API key
 
 ## Local Development Setup
 
@@ -93,7 +88,7 @@ cd frontend
 npm install
 ```
 
-Configure the backend API URL if required by creating a `.env.local` file:
+Create a `.env.local` file if required:
 
 ```env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
@@ -137,23 +132,17 @@ Create a `.env` file using `.env.example` as a reference.
 Configure the following environment variables:
 
 ```env
-DATABASE_URL=your_postgresql_connection_string
 RESEND_API_KEY=your_resend_api_key
 RESEND_TEST_EMAIL=your_email_address
+RESEND_FROM_EMAIL=Alvion Travels <onboarding@resend.dev>
 FRONTEND_URLS=http://localhost:3000
 ```
 
-### 4. Database Migrations
+`RESEND_FROM_EMAIL` is optional. If omitted, the backend uses Resend's testing sender address.
 
-Make sure PostgreSQL is running and the configured database exists.
+For production, use a sender address associated with a domain verified in Resend.
 
-Apply migrations:
-
-```bash
-alembic upgrade head
-```
-
-### 5. Start the Backend
+### 4. Start the Backend
 
 ```bash
 uvicorn main:app --reload
@@ -173,9 +162,9 @@ Never commit actual `.env` files or expose secret credentials.
 
 | Variable | Purpose |
 |---|---|
-| DATABASE_URL | PostgreSQL connection |
 | RESEND_API_KEY | Resend API authentication |
-| RESEND_TEST_EMAIL | Notification recipient |
+| RESEND_TEST_EMAIL | Email address receiving customer enquiries |
+| RESEND_FROM_EMAIL | Sender address used for notifications (optional) |
 | FRONTEND_URLS | Allowed frontend origins |
 | NEXT_PUBLIC_API_URL | Frontend backend API URL |
 
@@ -184,8 +173,34 @@ Never commit actual `.env` files or expose secret credentials.
 | Method | Endpoint | Description |
 |---|---|---|
 | GET | `/` | Backend status |
-| GET | `/health/db` | Database connectivity |
+| GET | `/health` | Backend health check |
 | POST | `/enquiries/` | Submit a travel enquiry |
+
+### Enquiry Submission
+
+The enquiry endpoint accepts:
+
+```json
+{
+  "name": "Customer Name",
+  "email": "customer@example.com",
+  "subject": "Travel Enquiry",
+  "message": "I would like to plan a trip.",
+  "website": ""
+}
+```
+
+Successful response:
+
+```json
+{
+  "message": "Your enquiry has been submitted successfully."
+}
+```
+
+The backend validates the request and sends an email notification through Resend.
+
+If the email submission fails, the API returns an error response so the customer can try again.
 
 ## Security Measures
 
@@ -196,22 +211,20 @@ The backend currently includes:
 - Honeypot spam detection
 - CORS origin restrictions
 - Environment-based secret management
+- HTML escaping in email notifications
 
-## Database Management
+## Enquiry Handling
 
-Alembic is used to manage database schema changes.
+This lightweight version does not store enquiries in a database.
 
-Generate a migration after modifying SQLAlchemy models:
+Customer enquiries are forwarded to the configured notification email address through Resend.
 
-```bash
-alembic revision --autogenerate -m "describe your changes"
-```
+Important considerations:
 
-Review the generated migration before applying it:
-
-```bash
-alembic upgrade head
-```
+- Ensure the notification email address is monitored.
+- Email delivery and notification failures should be monitored.
+- There is no database backup or enquiry history in this version.
+- PostgreSQL can be introduced later if enquiry tracking and management become necessary.
 
 ## Deployment
 
@@ -221,10 +234,20 @@ Planned hosting architecture:
 
 - Frontend: Vercel
 - Backend: Render
-- Database: Managed PostgreSQL
 - Email notifications: Resend
+- Database: Not required in the lightweight version
 
-Production environment variables and database credentials should be configured through the respective hosting platforms.
+Production environment variables should be configured through the respective hosting platforms.
+
+The frontend's `NEXT_PUBLIC_API_URL` must point to the deployed backend URL.
+
+## Future Improvements
+
+- PostgreSQL integration for enquiry storage
+- Enquiry management dashboard
+- CAPTCHA integration
+- Improved email delivery monitoring
+- Administrative enquiry management
 
 ## License
 

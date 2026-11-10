@@ -59,10 +59,10 @@ export default function Contact() {
             <label htmlFor="website">Leave this field empty</label>
             <input
               id="website"
-              name="website"
+              name="company_website_check"
               type="text"
               tabIndex={-1}
-              autoComplete="off"
+              autoComplete="new-password"
               value={form.website}
               onChange={(event) => updateField("website", event.target.value)}
             />
