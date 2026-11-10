@@ -13,4 +13,3 @@ class EnquiryCreate(BaseModel):
     phone: str = Field(min_length=7, max_length=20)
     subject: str = Field(min_length=3, max_length=255)
     message: str = Field(min_length=10, max_length=5000)
-    website: str = Field(default="", max_length=255)

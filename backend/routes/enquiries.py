@@ -24,12 +24,6 @@ def create_enquiry(
     request: Request,
     enquiry: EnquiryCreate
 ):
-    # Honeypot spam protection
-    if enquiry.website:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid submission"
-        )
 
     try:
         response = send_enquiry_notification(enquiry)

@@ -9,7 +9,6 @@ type FormState = {
   phone: string;
   subject: string;
   message: string;
-  website: string;
 };
 
 const initialForm: FormState = {
@@ -18,7 +17,6 @@ const initialForm: FormState = {
   phone: "",
   subject: "",
   message: "",
-  website: "",
 };
 
 export default function Contact() {
@@ -127,24 +125,6 @@ export default function Contact() {
           onSubmit={submitEnquiry}
           className="border-t-2 border-[var(--navy)] pt-7"
         >
-          {/* Honeypot spam protection */}
-          <div
-            aria-hidden="true"
-            className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
-          >
-            <label htmlFor="website">Leave this field empty</label>
-            <input
-              id="website"
-              name="company_website_check"
-              type="text"
-              tabIndex={-1}
-              autoComplete="new-password"
-              value={form.website}
-              onChange={(event) =>
-                updateField("website", event.target.value)
-              }
-            />
-          </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
             {/* Full name */}
